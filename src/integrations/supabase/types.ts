@@ -14,13 +14,204 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      auth_events: {
+        Row: {
+          created_at: string
+          event_type: string
+          id: string
+          ip_address: unknown | null
+          location: string | null
+          metadata: Json | null
+          risk_score: number | null
+          success: boolean | null
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          event_type: string
+          id?: string
+          ip_address?: unknown | null
+          location?: string | null
+          metadata?: Json | null
+          risk_score?: number | null
+          success?: boolean | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          event_type?: string
+          id?: string
+          ip_address?: unknown | null
+          location?: string | null
+          metadata?: Json | null
+          risk_score?: number | null
+          success?: boolean | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      behavioral_analytics: {
+        Row: {
+          anomaly_detected: boolean | null
+          anomaly_score: number | null
+          created_at: string
+          device_fingerprint: string | null
+          id: string
+          language: string | null
+          mouse_movement: Json | null
+          screen_resolution: string | null
+          session_id: string | null
+          timezone: string | null
+          typing_pattern: Json | null
+          user_id: string | null
+        }
+        Insert: {
+          anomaly_detected?: boolean | null
+          anomaly_score?: number | null
+          created_at?: string
+          device_fingerprint?: string | null
+          id?: string
+          language?: string | null
+          mouse_movement?: Json | null
+          screen_resolution?: string | null
+          session_id?: string | null
+          timezone?: string | null
+          typing_pattern?: Json | null
+          user_id?: string | null
+        }
+        Update: {
+          anomaly_detected?: boolean | null
+          anomaly_score?: number | null
+          created_at?: string
+          device_fingerprint?: string | null
+          id?: string
+          language?: string | null
+          mouse_movement?: Json | null
+          screen_resolution?: string | null
+          session_id?: string | null
+          timezone?: string | null
+          typing_pattern?: Json | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          is_active: boolean | null
+          role: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          is_active?: boolean | null
+          role?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          is_active?: boolean | null
+          role?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      risk_scores: {
+        Row: {
+          created_at: string
+          factors: Json | null
+          id: string
+          last_calculated: string
+          overall_score: number | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          factors?: Json | null
+          id?: string
+          last_calculated?: string
+          overall_score?: number | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          factors?: Json | null
+          id?: string
+          last_calculated?: string
+          overall_score?: number | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      threat_detections: {
+        Row: {
+          confidence_score: number | null
+          created_at: string
+          description: string | null
+          id: string
+          is_resolved: boolean | null
+          metadata: Json | null
+          resolved_at: string | null
+          severity: string
+          source_ip: unknown | null
+          threat_type: string
+          user_id: string | null
+        }
+        Insert: {
+          confidence_score?: number | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_resolved?: boolean | null
+          metadata?: Json | null
+          resolved_at?: string | null
+          severity: string
+          source_ip?: unknown | null
+          threat_type: string
+          user_id?: string | null
+        }
+        Update: {
+          confidence_score?: number | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_resolved?: boolean | null
+          metadata?: Json | null
+          resolved_at?: string | null
+          severity?: string
+          source_ip?: unknown | null
+          threat_type?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_current_user_role: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
