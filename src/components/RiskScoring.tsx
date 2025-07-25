@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import { TrendingUp, TrendingDown, AlertTriangle, Shield } from 'lucide-react';
+import { TrendingUp, TrendingDown, AlertTriangle, Shield, XCircle } from 'lucide-react';
 
 const RiskScoring = () => {
   const riskTrends = [
