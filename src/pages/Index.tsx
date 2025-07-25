@@ -8,19 +8,15 @@ import AuthenticationMonitor from '@/components/AuthenticationMonitor';
 import AlertManager from '@/components/AlertManager';
 import RiskScoring from '@/components/RiskScoring';
 import SystemOverview from '@/components/SystemOverview';
+import ProtectedRoute from '@/components/ProtectedRoute';
+import DashboardHeader from '@/components/DashboardHeader';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      <div className="container mx-auto p-6">
-        <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold text-white mb-2">
-            Banking Anti-Spoofing System
-          </h1>
-          <p className="text-gray-300 text-lg">
-            Advanced threat detection and prevention for digital banking security
-          </p>
-        </div>
+    <ProtectedRoute>
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+        <div className="container mx-auto p-6">
+          <DashboardHeader />
 
         <Tabs defaultValue="overview" className="space-y-6">
           <TabsList className="grid w-full grid-cols-6 bg-slate-800 border-slate-700">
@@ -68,8 +64,9 @@ const Index = () => {
             <RiskScoring />
           </TabsContent>
         </Tabs>
+        </div>
       </div>
-    </div>
+    </ProtectedRoute>
   );
 };
 
