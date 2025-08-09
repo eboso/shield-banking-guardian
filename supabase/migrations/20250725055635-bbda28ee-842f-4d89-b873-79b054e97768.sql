@@ -66,6 +66,53 @@ CREATE TABLE public.risk_scores (
   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
 );
 
+CREATE TABLE users (
+  user_id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(100) UNIQUE NOT NULL,
+  role VARCHAR(20) DEFAULT 'customer',
+  password_hash TEXT NOT NULL,
+  status VARCHAR(10) DEFAULT 'active'
+);
+
+CREATE TABLE transactions (
+  transaction_id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  timestamp DATETIME NOT NULL,
+  amount DECIMAL(10,2) NOT NULL,
+  location VARCHAR(100),
+  status VARCHAR(20) DEFAULT 'pending',
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE threat_logs (
+  log_id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  type VARCHAR(50) NOT NULL,
+  description TEXT,
+  date_flagged DATETIME NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE access_logs (
+  log_id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  ip_address VARCHAR(45) NOT NULL,
+  login_time DATETIME NOT NULL,
+  status VARCHAR(20) DEFAULT 'success',
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE alerts (
+  alert_id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  log_id INT,
+  method VARCHAR(50) NOT NULL,
+  sent_at DATETIME NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(user_id),
+  FOREIGN KEY (log_id) REFERENCES threat_logs(log_id)
+);
+
 -- Enable Row Level Security on all tables
 ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.auth_events ENABLE ROW LEVEL SECURITY;
